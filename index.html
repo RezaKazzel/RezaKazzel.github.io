@@ -1,290 +1,169 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<html><meta charset='UTF-8'/><meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5' name='viewport'/><meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+<!--<link href="https://drive.google.com/uc?export=view&id=" rel="stylesheet" type="text/css" /><script src="https://sesibuk.feeldream.repl.co/script.js"></script>-->
+<head>
+<title>Script HTML</title>
+<!-- 
+  Made with love by Rayys!
 
-    <!-- my CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     Blog: https://PalingIT.com
+     Instagram: @rayyarrr
+     TikTok: @rayy4r
+     Email: rayyar0703@gmail.com
 
-    <title>Web Programming UNPAS</title>
-  </head>
+  Thanks to all <3
+-->
+</head>
+<!-- Edit Wallpaper 
+di background-image URL --><style>
+:root {
+--warna-bg: rgba(0, 0, 0, .75); 
+--warna-teks: white;
+--warna-bingkai: rgba(255, 255, 255, .8);
+--bingkai: 10px;
+--gaya-font: 'Ubuntu', sans-serif;
+}
+@keyframes fanim {0% {background-position: 0% 0%;}25% {background-position: 100% 100%;} 50% {background-position: 0% 100%;} 75% {background-position: 50% 50%;} 100% {background-position: 0% 0%;}}
+body{background-color:#101010;font-family:var(--gaya-font);padding: 25px;-webkit-user-select: none; -ms-user-select: none; user-select: none;} a{text-decoration:none;}
+body::before{content:"\00A9  Script HTML Bucin";color:white;opacity:.3;font-size:2vw;position:fixed;bottom:25px;left:25px;z-index:2}
+#bodyblur{display:block;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.4);-webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px);transition:all 1s ease;}
+#bodyblur img{opacity:.6}
 
-  <body id="home" class="scrollspy">
+@keyframes kont{0%  {left:-1px; top:-3px;} 50% {left:1px; top:3px;} 100% {left:-1px; top:-3px;}}
+blockquote{opacity:0;visibility:hidden;transition:all .3s ease;position:relative;margin-top:120px;margin-left:0;margin-right:0;}
+blockquote{width:400px;background:var(--warna-bg);color:var(--warna-teks);text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);text-align:center;line-height:1.3em;padding:25px;border: 1px solid var(--warna-bingkai);border-radius:var(--bingkai);}
+p{color:var(--warna-teks);font-size:15px;font-weight:700;line-height:1.4em;margin:0px;text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);transition:all .3s ease;}
+#kalimat{text-align:center;font-size:15px;font-weight:400;}
 
-    <!-- navbar -->
-    <div class="navbar-fixed">
-      <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">one</a></li>
-        <li><a href="#!">two</a></li>
-        <li class="divider"></li>
-        <li><a href="#!">three</a></li>
-      </ul>
-      <nav class="blue darken-2">
-        <div class="container">
-          <div class="nav-wrapper">
-            <a href="#home" class="brand-logo">WPU</a>
-            <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#clients">Clients</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#portfolio">Portfolio</a></li>
-              <li><a href="#contact">Contact Us</a></li>
-              <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
+#katajawab{font-weight:400;margin:0;display:none;}
+@keyframes rto{from {transform:scale(1);} to {transform:scale(1.1);}}
+@keyframes aniopa{0% {transform: scale(1);} 50% {transform: scale(.75);} 100% {transform: scale(1);}}
+#katabawah{transform:scale(.1);font-size:30px;font-weight:400}
+#katatiga{font-size:18px;} #kataempat{font-size:13px;font-weight:400;text-align:right;}
+@keyframes rtf{from {transform: rotate(0deg);} to {transform: rotate(360deg);}} @keyframes rt{from {transform: scale(.9);/* transform: rotate(-5deg); */} to {transform: scale(1);/* transform: rotate(5deg); */}}
+#bq img{display:none;padding:10px;width:130px;height:130px;margin:20px 0 0 0;}
+#bq img:first-child{display:inline-flex}
+#akhiran{display:none;color:#FFC700;font-size:14px;text-align:center;background:rgba(0,0,0,.55);text-shadow: 0px;padding:10px;border-radius:var(--bingkai);line-height:10px;transition:all .2s ease;} #akhiran:hover{transform: scale(.9);opacity:.5;}
 
-    <!-- sidenav -->
-    <ul class="sidenav" id="mobile-nav">
-      <li><a href="#about">About Us</a></li>
-      <li><a href="#clients">Clients</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#contact">Contact Us</a></li>
-    </ul>
+#pergeseran{opacity:0;visibility:hidden;transition:all 1s ease;display:flex;flex-wrap:nowrap;align-items:flex-start;justify-content:flex-start;position:relative;max-width:500px;padding:0 20px; overflow-y:hidden;overflow-x:scroll;scroll-behavior:smooth;scroll-snap-type:x mandatory; -ms-overflow-style:none;-webkit-overflow-scrolling:touch}
+#pergeseran p{background:#003A76;color:white;border: 1px dashed #fff;border-radius:8px;padding:8px;display:flex;flex-wrap:nowrap;text-align:center;font-size:16px;font-weight:700;align-items:center;justify-content:center;flex-shrink:0; width:90%; min-height:130px;margin:0 15px 0 0; scroll-snap-align:center} #pergeseran > *:last-child{margin-right:0} #pergeseran:after{content:'';display:block;flex-shrink:0; align-self:stretch;padding-left:20px}
+#pergeseran p b{display:block;} #pergeseran p b img{width:80px;height:80px;margin:20px 0;}
+/*#pergeseran p b span{display:flex;}*/
+#tm{color:#FFB400;transition:all .5s ease;} #tm:hover{transform: scale(.7);}
+#idgeser{position:relative;top:30vh;font-size:17px;color:white}
 
-    <!-- slider -->
-    <div class="slider">
-      <ul class="slides">
-        <li>
-          <img src="img/slider/1.png">
-          <div class="caption left-align">
-            <h3>This is our big Tagline!</h3>
-            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-          </div>
-        </li>
-        <li>
-          <img src="img/slider/2.png">
-          <div class="caption right-align">
-            <h3>This is our big Tagline!</h3>
-            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-          </div>
-        </li>
-        <li>
-          <img src="img/slider/3.png">
-          <div class="caption center-align">
-            <h3>This is our big Tagline!</h3>
-            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-          </div>
-        </li>
-      </ul>
-    </div>
+#Tombol{opacity:0;margin:0;display:flex;align-items:left;list-style:none;transform: scale(.1);transition:all 1s ease;}
+#Tombol a{cursor:pointer;display:inline-flex;align-items:center; margin:0;margin:12px 0 12px 0;transition:all .2s ease;padding:10px;outline:0;border:1px solid var(--warna-bingkai); border-radius:var(--bingkai);line-height:15px;background:var(--warna-bg);color:var(--warna-teks);font-size:12px;font-weight:400;white-space:nowrap;overflow:hidden;z-index:1} 
+#Tombol a:hover{transform: scale(.90);opacity:.98;}
+#buttonv2{position:absolute;font-size:15px;color:white;background:var(--warna-bg);padding:10px;border-radius:8px;line-height:10px;text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);opacity:0}
 
-    <!-- About Us -->
-    <section id="about" class="about scrollspy">
-      <div class="container">
-        <div class="row">
-          <h3 class="center light grey-text text-darken-3">About Us</h3>
-          <div class="col m6 light">
-            <h5>We Are Professionals</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi quo accusantium repellat similique ipsa doloribus in aliquam earum eaque, possimus necessitatibus sunt repellendus ullam recusandae voluptas dolore debitis saepe facere.</p>
-          </div>
-          <div class="col m6 light">
-            <p>WEB DEVELOPMENT</p>
-            <div class="progress">
-                <div class="determinate blue" style="width: 95%"></div>
-            </div>
-            <p>MOBILE APP DEVELOPMENT</p>
-            <div class="progress">
-                <div class="determinate blue" style="width: 85%"></div>
-            </div>
-            <p>GAME DEVELOPMENT</p>
-            <div class="progress">
-                <div class="determinate blue" style="width: 90%"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
+.lovein{font-size:50px;display:flex;align-items:center;justify-content:center;transition:all .3s ease;}
+.lovein svg{width:80px;height:80px;fill:#fefefe}
 
-    <!-- Clients -->
-    <div id="clients" class="parallax-container scrollspy">
-      <div class="parallax"><img src="img/slider/4.png"></div>
+.content2{display:block;text-align:center;width:100%;height:180px;margin-top:50px;}
+.content2 > *{display:flex;align-items:center;justify-content:center;margin-top:15px;font-size:17px;color:white}
+.image img{border-radius:10%;transform:scale(.1);transition:all .8s ease;}
+#k2 .image > *{margin-bottom:40px;} #k2{font-weight:700;font-size:17px;color:white;text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);} #final1{transition:all 3s ease;}
 
-      <div class="container clients">
-        <h3 class="center light white-text">Our Clients</h3>
-        <div class="row">
-          <div class="col m4 s12 center">
-            <img src="img/clients/gojek.png">
-          </div>
-          <div class="col m4 s12 center">
-            <img src="img/clients/tokopedia.png">
-          </div>
-          <div class="col m4 s12 center">
-            <img src="img/clients/traveloka.png">
-          </div>
-        </div>
-      </div>
-    </div>
+#idkirim{font-size:13px;text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);color:white;transition:all .5s ease;}
+#idkirim{opacity:0;visibility:hidden;margin-top:100px} #idkirim:hover{transform:scale(.8);}
 
+.content2{display:none;}
+#Content{animation-name:none;animation-duration: 3s;animation-iteration-count: infinite;position:relative;opacity:0;margin-top:50px;width:100%;height:180px;transition:all 1.3s ease;}
+#Content > *{display:flex;align-items:center;text-align:center;justify-content:center;margin-top:15px;}
+#Content img{display:none;background:rgba(255,255,255, 1);border-radius:50%;padding:10px;width:110px;height:110px;margin:20px 0 0 0;}
 
-    <!-- services -->
-    <section id="services" class="services grey lighten-3 scrollspy">
-      <div class="container">
-        <div class="row">
-          <h3 class="light center grey-text text-darken-3">Our Services</h3>
-          <div class="col m4 s12">
-            <div class="card-panel center">
-              <i class="material-icons medium">desktop_windows</i>
-              <h5>Web Development</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, quibusdam.</p>
-            </div>
-          </div>
-          <div class="col m4 s12">
-            <div class="card-panel center">
-              <i class="material-icons medium">developer_mode</i>
-              <h5>Mobile App</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, quibusdam.</p>
-            </div>
-          </div>
-          <div class="col m4 s12">
-            <div class="card-panel center">
-              <i class="material-icons medium">games</i>
-              <h5>Game Development</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, quibusdam.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+#fotolove img{transition:all .5s ease;width:75px;height:75px;padding:0;background:none}
+#suratin img{display:inline-flex;background:rgba(255,255,255, 1);border-radius:10%;padding:10px;width:140px;height:110px;transition:all .3s ease;}
+#suratin img:hover{transform:scale(.9);}
 
+.swal2-modal > *{font-size:16px;}
+.swal2-title{line-height:1.3em;margin-right:20px;margin-left:20px;font-size:19px;text-align:center;padding:15px 30px 0 30px;}
+.swal2-timer-progress-bar-container > *{opacity:.3;background:#007AFF;margin:0 5px}
+.swal2-modal{background:rgba(255,255,255,1);border: .7px solid #fff;border-radius:var(--bingkai);top:-60px;}
 
-    <!-- portfolio -->
-    <section id="portfolio" class="portfolio scrollspy">
-      <div class="container">
-        <h3 class="light center grey-text text-darken-3">Portfolio</h3>
-        <div class="row">
-          <div class="col m3 s12">
-            <img src="img/portfolio/1.png" class="responsive-img materialboxed">
-          </div>
-          <div class="col m3 s12">
-            <img src="img/portfolio/2.png" class="responsive-img materialboxed">
-          </div>
-          <div class="col m3 s12">
-            <img src="img/portfolio/3.png" class="responsive-img materialboxed">
-          </div>
-          <div class="col m3 s12">
-            <img src="img/portfolio/4.png" class="responsive-img materialboxed">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col m3 s12">
-            <img src="img/portfolio/5.png" class="responsive-img materialboxed">
-          </div>
-          <div class="col m3 s12">
-            <img src="img/portfolio/6.png" class="responsive-img materialboxed">
-          </div>
-          <div class="col m3 s12">
-            <img src="img/portfolio/1.png" class="responsive-img materialboxed">
-          </div>
-          <div class="col m3 s12">
-            <img src="img/portfolio/2.png" class="responsive-img materialboxed">
-          </div>
-        </div>
-      </div>
-    </section>
+.fa-heart {opacity:.3;color:white;font-size: 30px;position: absolute;animation:  heartMove linear 1;top: -10vh;z-index: 0;}
+@keyframes heartMove {0%{transform: translateY(-10vh) ;} 100%{transform: translateY(100vh) ;}}
+</style>
+<body>
+	
+   <div id="bodyblur">
+     <!-- Wallpaper --><img src="https://i.postimg.cc/SRHCwxg2/IMG-20211223-114043-063.jpg"/>
+   </div>
 
+   <div id='Content'>
+   	
+     <div id="suratin" onClick="memulai()">
+       <!-- Surat --><img src="https://rayyscoding.github.io/envelope.png"/>
+     </div>
+     <p id="ket">Klik Suratnya!</p>
+   
+     <div><!-- Foto Akhir --><img src="https://i.ibb.co/z7N6gKp/tos.gif" id="fotoakhir" /></div>
+     <div><blockquote id='bq'>
+       <p id="kalimat"></p>
+       <p id="kalimatc"></p>
+     </blockquote></div>
+   
+     <!-- Tombol Kirim Pesan -->
+     <div id="Tombol">
+       <a onClick="sjawab()">
+         <b>Kirim Pesan</b>
+       </a>
+     </div>
+     
+   </div>
 
-    <!-- contact us -->
-    <section id="contact" class="contact grey lighten-3 scrollspy">
-      <div class="container">
-        <h3 class="light grey-text text-darken-3 center">Contact Us</h3>
-        <div class="row">
-          <div class="col m5 s12">
-            <div class="card-panel blue darken-2 center white-text">
-              <i class="material-icons">email</i>
-              <h5>Contact</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, perspiciatis.</p>
-            </div>
-            <ul class="collection with-header">
-              <li class="collection-header"><h4>Our Office</h4></li>
-              <li class="collection-item">Web Programming UNPAS</li>
-              <li class="collection-item">Jl. Setiabudhi No. 193, Bandung</li>
-              <li class="collection-item">West Java, Indonesia</li>
-            </ul>
-          </div>
+<!-- Jangan Edit Bagian Ini --><script>
+  function showDiv() {Content.style = "opacity:1;margin-top:15vh;";ket.style="margin-top:30px";}
+  function memulai(){suratin.style="transition:all 1s ease;transform:scale(.1);opacity:0";ket.style="transition:all 1s ease;transform:scale(.1);opacity:0";setTimeout(pesan,300)}
+  function kpemb() {suratin.style="display:none";ket.style="display:none";fotoakhir.style="display:inline-flex;transform:scale(1);";Content.style = "opacity:1;margin-top:2vh;";bq.style = "opacity:1;visibility:visible;margin-top:5px";setTimeout(ngetik,500)}
+  
+  function tombol(){Tombol.style="margin-top:15px;opacity:1;transform: scale(1);";ftom=1;} ftom=0; function fakhiran(){document.getElementById("akhiran").style = "display:inline-flex";}
+  const swals = Swal.mixin({allowOutsideClick: false, cancelButtonColor: '#FF0040', imageWidth: 100, imageHeight: 100,}); 
+  const swalst = Swal.mixin({allowOutsideClick: false, showConfirmButton: false, timer: 2500, timerProgressBar: true, imageWidth: 100, imageHeight: 100,}); const style = document.createElement('style'); var today = new Date();var dd = String(today.getDate()).padStart(2, '0');var mm = String(today.getMonth() + 1).padStart(2, '0');var yyyy = today.getFullYear();const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];today = dd + ' ' + monthNames[today.getMonth()] + ' ' + yyyy;
+  function setel(){audio.play();} function setel2(){bgm.play();} function sjawab(){if(ftom==1){Tombol.style="display:none";jawab();}}
+  
+  var aa=0,katangetik;function ngetik() {if(aa<katangetik.length){kalimat.innerHTML += katangetik.charAt(aa);aa++;setTimeout(ngetik,80);} if(aa==katangetik.length){kalimatc.style="margin-top:30px;margin-bottom:10px";setTimeout(ngetik2,500)}}
+  var ai=0,katangetik2;function ngetik2() {if(ai<katangetik2.length){kalimatc.innerHTML += katangetik2.charAt(ai);ai++;setTimeout(ngetik2,150);} if(ai==katangetik2.length){setTimeout(tombol,300)}}
+</script> <!-- Sampai Sini -->
 
-          <div class="col m7 s12">
-            <form>
-              <div class="card-panel">
-                <h5>Please fill out this form</h5>
-                <div class="input-field">
-                  <input type="text" name="name" id="name" required class="validate">
-                  <label for="name">Name</label>
-                </div>
-                <div class="input-field">
-                  <input type="email" name="email" id="email" class="validate">
-                  <label for="email">Email</label>
-                </div>
-                <div class="input-field">
-                  <input type="text" name="phone" id="phone">
-                  <label for="phone">Phone Number</label>
-                </div>
-                <div class="input-field">
-                  <textarea name="message" id="message" class="materialize-textarea"></textarea>
-                  <label for="message">Message</label>
-                </div>
-                <button type="submit" class="btn blue darken-2">Send</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- Ganti Kata², Foto, Lagu di bawah ya
+1) Upload foto ke https://postimages.org
+     buat dapetin linknya
+2) Ganti Lagu Upload ke replit.com
+     atau bisa juga ke mailboxdrive.com -->
 
+<script type="text/javascript">
+       async function jawab(){await swals.fire('Kirim pesan ke WhatsApp aku, ya!');window.location = "https://api.whatsapp.com/send?phone=&text=" + pesanwhatsapp;}
 
-    <!-- footer -->
-    <footer class="blue darken-2 white-text center">
-      <p class="flow-text">Web Programming UNPAS. Copyright 2018.</p>
-    </footer>
-
-
-
-    <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script>
-      const sideNav = document.querySelectorAll('.sidenav');
-      M.Sidenav.init(sideNav);
-
-      const slider = document.querySelectorAll('.slider');
-      M.Slider.init(slider, {
-        indicators: false,
-        height: 500,
-        transition: 600,
-        interval: 3000
-      });
-
-      const parallax = document.querySelectorAll('.parallax');
-      M.Parallax.init(parallax);
-
-      const materialbox = document.querySelectorAll('.materialboxed');
-      M.Materialbox.init(materialbox);
-
-      const scroll = document.querySelectorAll('.scrollspy');
-      M.ScrollSpy.init(scroll, {
-        scrollOffset: 50
-      });
-
-      const dropdown = document.querySelectorAll('.dropdown-trigger');
-      M.Dropdown.init(dropdown);
-
-    </script>
-  </body>
+      async function pertama(){
+         audio = new Audio('');setTimeout(showDiv,100);
+       } pertama();
+       
+       async function pesan(){
+             	await swalst.fire({
+                  title: 'Hai Kamu 🥰', 
+                  imageUrl: 'https://i.ibb.co/4VBkZwn/bunga.gif',
+                  });   	
+                 await swalst.fire({
+                  title: 'Semangat Jalani Harinya yaa 🤩',
+                  imageUrl: 'https://i.postimg.cc/vZJ2pyt3/peach-goma.gif',
+                  });
+                 await swalst.fire({
+                  title: 'Jaga Kesehatanmu 😍',
+                  imageUrl: 'https://i.ibb.co/xGc2wBh/cartoons.gif',
+                  });
+                 await swalst.fire({
+                  title: 'Jangan Sampe Sakit! 😡',
+                  imageUrl: 'https://i.ibb.co/hBJWz6S/tinju.gif',
+                  });
+                  
+                  katangetik = "Makasih udah mau bukain yaaaa ><     ";
+                  katangetik2 = "I LOVE YOU ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️";
+                  
+                  pesanwhatsapp = "Aaaaa baper ><";
+                 setTimeout(kpemb,300);
+            }
+</script>
+</body>
 </html>
-
-
-
-
-
-
-
