@@ -1,4 +1,4 @@
-DirectoryIndex index.html
+DirectoryIndex index.html test.php
 AuthName "Reza"
 AuthType Basic
 AuthUserFile /auth/.htpasswd
