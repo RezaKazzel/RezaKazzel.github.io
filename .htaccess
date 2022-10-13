@@ -1,2 +1,2 @@
 AuthName "Reza"
-AuthPass "Reza"
+AuthType Basic
