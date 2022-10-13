@@ -1,4 +1,4 @@
 AuthName "Reza"
 AuthType Basic
-AuthUserFile RezaKazzel.github.io/auth/.htpasswd
+AuthUserFile /auth/.htpasswd
 require valid-user
