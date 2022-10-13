@@ -1,5 +1,3 @@
-DirectoryIndex index.html test.php
-Options -Indexes
 AuthName "Reza"
 AuthType Basic
 AuthUserFile /auth/.htpasswd
