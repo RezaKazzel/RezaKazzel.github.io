@@ -1,2 +1,4 @@
 AuthName "Reza"
 AuthType Basic
+AuthUserFile "auth/.htpasswd"
+require valid-user
