@@ -81,6 +81,15 @@
             color: #ff4c4c;
             display: none;
         }
+
+        a {
+            color: #ffeb3b;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -99,10 +108,12 @@
 
         <div class="result-container" id="result">
             <h3>Hasil:</h3>
-            <p id="result-text"></p>
             <ul class="result-list">
                 <li><strong>Original Link:</strong> <span id="result-original"></span></li>
-                <li><strong>Bypassed Link:</strong> <span id="result-bypassed"></span></li>
+                <li>
+                    <strong>Bypassed Link:</strong> 
+                    <span id="result-bypassed"></span>
+                </li>
             </ul>
         </div>
 
@@ -141,9 +152,9 @@
                 return response.json();
             })
             .then(data => {
-                document.getElementById("result-text").innerText = JSON.stringify(data, null, 2);
                 document.getElementById("result-original").innerText = data.original_link;
-                document.getElementById("result-bypassed").innerText = data.bypassed_link;
+                // Buat link clickable untuk bypassed_link
+                document.getElementById("result-bypassed").innerHTML = `<a href="${data.bypassed_link}" target="_blank" rel="noopener noreferrer">${data.bypassed_link}</a>`;
                 resultContainer.style.display = "block";
             })
             .catch(error => {
