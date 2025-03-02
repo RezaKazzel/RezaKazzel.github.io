@@ -1,16 +1,159 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Sederhana</title>
+    <title>Test Web Eja</title>
+
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        h1 { color: blue; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container-header {
+            margin-top: 20px;
+        }
+
+        .title {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+
+        .container-input {
+            margin-top: 20px;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+
+        button {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+
+        button:hover {
+            background: #e68900;
+        }
+
+        .result-container {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            display: none;
+        }
+
+        .result-list {
+            text-align: left;
+            display: inline-block;
+        }
+
+        .error-container {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(255, 0, 0, 0.2);
+            border-radius: 5px;
+            color: #ff4c4c;
+            display: none;
+        }
     </style>
 </head>
+
 <body>
-    <h1>Halo, Selamat Datang!</h1>
-    <p>Ini adalah website sederhana di GitHub Pages.</p>
+
+    <div class="full-container">
+        <div class="container-header">
+            <span class="title">Test Web Eja</span>
+            <span class="subtitle">Cihuy</span>
+        </div>
+
+        <div class="container-input">
+            <input id="url" type="text" placeholder="Masukkan URL" autocomplete="off">
+            <button id="submit_button"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div class="result-container" id="result">
+            <h3>Hasil:</h3>
+            <p id="result-text"></p>
+            <ul class="result-list">
+                <li><strong>Original Link:</strong> <span id="result-original"></span></li>
+                <li><strong>Bypassed Link:</strong> <span id="result-bypassed"></span></li>
+            </ul>
+        </div>
+
+        <div class="error-container" id="error">
+            <h3>Error:</h3>
+            <p id="error-text"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("submit_button").addEventListener("click", function () {
+            let inputUrl = document.getElementById("url").value;
+            let resultContainer = document.getElementById("result");
+            let errorContainer = document.getElementById("error");
+
+            // Sembunyikan hasil & error sebelum request
+            resultContainer.style.display = "none";
+            errorContainer.style.display = "none";
+
+            if (!inputUrl) {
+                alert("Masukkan URL terlebih dahulu!");
+                return;
+            }
+
+            fetch("https://test-flask-api-production.up.railway.app/bypass", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ url: inputUrl })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => { throw new Error(err.message || "Terjadi kesalahan!"); });
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById("result-text").innerText = JSON.stringify(data, null, 2);
+                document.getElementById("result-original").innerText = data.original_link;
+                document.getElementById("result-bypassed").innerText = data.bypassed_link;
+                resultContainer.style.display = "block";
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                document.getElementById("error-text").innerText = error.message || "Terjadi kesalahan!";
+                errorContainer.style.display = "block";
+            });
+        });
+    </script>
+
 </body>
+
 </html>
