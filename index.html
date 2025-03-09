@@ -137,8 +137,23 @@
                 alert("Masukkan URL terlebih dahulu!");
                 return;
             }
+            
 
-            fetch("https://test-flask-api-production.up.railway.app/bypass", {
+            const api1Domains = ["mediafire.com", "pixeldrain.com"];
+            const api2Domains = ["ouo.io", "ouo.press"];
+        
+            let targetApi = null;
+        
+            if (api1Domains.some(domain => inputUrl.includes(domain))) {
+                targetApi = "https://test-flask-api-production.up.railway.app/androidadult"; // Ganti dengan REST API 1
+            } else if (api2Domains.some(domain => inputUrl.includes(domain))) {
+                targetApi = "https://test-flask-api-production.up.railway.app/bypass";
+            } else {
+                alert("URL tidak dikenali!");
+                return;
+            }
+
+            fetch(targetApi, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
