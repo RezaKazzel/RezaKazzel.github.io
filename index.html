@@ -125,7 +125,7 @@
 
     <script>
         document.getElementById("submit_button").addEventListener("click", function () {
-            let inputUrl = document.getElementById("url").value;
+            let inputUrl = document.getElementById("url").value.trim();
             let resultContainer = document.getElementById("result");
             let errorContainer = document.getElementById("error");
 
@@ -137,7 +137,6 @@
                 alert("Masukkan URL terlebih dahulu!");
                 return;
             }
-            
 
             const api1Domains = ["androidadult.com"];
             const api2Domains = ["ouo.io", "ouo.press"];
@@ -145,15 +144,15 @@
             let targetApi = null;
         
             if (api1Domains.some(domain => inputUrl.includes(domain))) {
-                targetApi = "https://test-flask-api-production.up.railway.app/androidadult"; // Ganti dengan REST API 1
+                targetApi = "androidadult";
             } else if (api2Domains.some(domain => inputUrl.includes(domain))) {
-                targetApi = "https://test-flask-api-production.up.railway.app/bypass";
+                targetApi = "bypass";
             } else {
                 alert("URL tidak dikenali!");
                 return;
             }
 
-            fetch(targetApi, {
+            fetch("https://test-flask-api-production.up.railway.app/" + targetApi, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -167,9 +166,36 @@
                 return response.json();
             })
             .then(data => {
-                document.getElementById("result-original").innerText = data.original_link;
-                // Buat link clickable untuk bypassed_link
-                document.getElementById("result-bypassed").innerHTML = `<a href="${data.bypassed_link}" target="_blank" rel="noopener noreferrer">${data.bypassed_link}</a>`;
+                document.getElementById("result-original").innerText = data.original_link || "Tidak ada data";
+
+                let bypassedLinks = [];
+                let bypassedHtml = "";
+
+                if (targetApi === "androidadult") {
+                    if (data["APK File"]) {
+                        bypassedLinks.push({ text: "APK File", url: data["APK File"] });
+                    }
+                    if (data["Mirror APK"]) {
+                        bypassedLinks.push({ text: "Mirror APK", url: data["Mirror APK"] });
+                    }
+                } else {
+                    if (data.bypassed_link) {
+                        bypassedLinks.push({ text: "Bypassed Link", url: data.bypassed_link });
+                    }
+                }
+
+                if (bypassedLinks.length > 0) {
+                    bypassedHtml = "<ul>";
+                    bypassedLinks.forEach(link => {
+                        bypassedHtml += `<li><strong>${link.text}:</strong> 
+                            <a href="${link.url}" target="_blank">${link.url}</a></li>`;
+                    });
+                    bypassedHtml += "</ul>";
+                } else {
+                    bypassedHtml = "Tidak ada link yang ditemukan.";
+                }
+
+                document.getElementById("result-bypassed").innerHTML = bypassedHtml;
                 resultContainer.style.display = "block";
             })
             .catch(error => {
