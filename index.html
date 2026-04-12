@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey APIs - OUO Bypass & AndroidAdult Scraper</title>
-
-    <!-- Google Fonts & Font Awesome -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
+    <title>Rey Tools · OUO Bypass & AndroidAdult</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
@@ -18,24 +19,35 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0d0d14 0%, #16161f 100%);
-            color: #f5f5f7;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #0A0A0A;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            color: #fff;
         }
 
-        .card {
-            background: #1a1a24;
-            border: 1px solid #2a2a3a;
-            border-radius: 24px;
+        .glass-card {
+            background: rgba(20, 20, 30, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 32px;
             padding: 40px;
             max-width: 600px;
             width: 100%;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(168, 85, 247, 0.1) inset;
+            transform: translateY(-4px);
         }
 
         .header {
@@ -44,108 +56,163 @@
         }
 
         .title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #a855f7 0%, #c084fc 100%);
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #fff 0%, #a855f7 50%, #60a5fa 100%);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: -0.5px;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
         }
 
         .subtitle {
-            font-size: 1rem;
-            color: #9898a6;
-            margin-top: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .badge {
-            background: #a855f7;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 600;
+            color: #888;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .input-group {
             display: flex;
             gap: 12px;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
 
-        .input-group input {
+        .input-wrapper {
             flex: 1;
-            padding: 14px 18px;
-            background: #0d0d14;
-            border: 1px solid #2a2a3a;
-            border-radius: 16px;
-            color: #f5f5f7;
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 1rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px 16px 16px 48px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: #fff;
             font-size: 0.95rem;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            transition: all 0.3s ease;
         }
 
-        .input-group input:focus {
+        input:focus {
             border-color: #a855f7;
-            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
+            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15);
+            background: rgba(0, 0, 0, 0.6);
         }
 
-        .input-group input::placeholder {
-            color: #5a5a6e;
+        input::placeholder {
+            color: #555;
         }
 
-        .input-group button {
-            background: #a855f7;
-            color: white;
+        .btn {
+            background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
             border: none;
-            padding: 0 24px;
-            border-radius: 16px;
-            cursor: pointer;
-            font-size: 1.2rem;
+            border-radius: 20px;
+            padding: 0 28px;
+            color: #fff;
             font-weight: 600;
-            transition: all 0.2s;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .input-group button:hover {
-            background: #9333ea;
+        .btn:hover {
+            background: linear-gradient(135deg, #c084fc 0%, #8b5cf6 100%);
             transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
         }
 
-        .input-group button:active {
-            transform: scale(0.98);
+        .btn i {
+            font-size: 1rem;
         }
 
         .result-card, .error-card {
-            background: #0d0d14;
-            border: 1px solid #2a2a3a;
-            border-radius: 16px;
-            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 24px;
             margin-top: 20px;
-            animation: fadeIn 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            animation: fadeSlide 0.4s ease;
         }
 
-        .result-card h3, .error-card h3 {
-            font-size: 1rem;
-            font-weight: 600;
+        .error-card {
+            border-color: rgba(239, 68, 68, 0.3);
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-            color: #9898a6;
+            letter-spacing: 0.1em;
+            font-size: 0.85rem;
+            color: #a855f7;
         }
 
-        .error-card h3 {
-            color: #f43f5e;
+        .result-header i {
+            font-size: 1.2rem;
+        }
+
+        .result-item {
+            margin-bottom: 18px;
+        }
+
+        .result-label {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+
+        .result-value {
+            font-family: 'SF Mono', 'Menlo', 'Monaco', 'Cascadia Code', monospace;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 12px 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            word-break: break-all;
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        .result-value a {
+            color: #a855f7;
+            text-decoration: none;
+            border-bottom: 1px dashed #a855f7;
+        }
+
+        .result-value a:hover {
+            color: #c084fc;
+            border-bottom: 1px solid #c084fc;
         }
 
         .result-list {
@@ -153,233 +220,211 @@
         }
 
         .result-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid #1e1e2a;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        .result-list li:last-child {
-            border-bottom: none;
-        }
-
-        .result-list strong {
-            min-width: 100px;
-            font-size: 0.85rem;
-            color: #9898a6;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .result-list span, .result-list a {
-            color: #a855f7;
-            word-break: break-all;
-            font-family: 'Monaco', 'Menlo', monospace;
-            font-size: 0.9rem;
-        }
-
-        .result-list a {
-            text-decoration: none;
-            border-bottom: 1px dashed #a855f7;
-        }
-
-        .result-list a:hover {
-            border-bottom: 1px solid #a855f7;
-        }
-
-        .error-text {
-            color: #f43f5e;
-            font-size: 0.9rem;
-        }
-
-        .loading {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .detected-badge {
-            display: inline-block;
-            background: #1e1e2a;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            color: #a855f7;
             margin-bottom: 12px;
         }
+
+        .badge {
+            display: inline-block;
+            background: #a855f7;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-right: 8px;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .hidden { display: none !important; }
     </style>
 </head>
-
 <body>
 
-    <div class="card">
-        <div class="header">
-            <h1 class="title">Rey APIs</h1>
-            <div class="subtitle">
-                <span>OUO Bypass & AndroidAdult Scraper</span>
-                <span class="badge">v2.0</span>
-            </div>
+<div class="glass-card">
+    <div class="header">
+        <div class="title">Rey Tools</div>
+        <div class="subtitle">OUO Bypass · AndroidAdult</div>
+    </div>
+
+    <div class="input-group">
+        <div class="input-wrapper">
+            <i class="fa-solid fa-link"></i>
+            <input type="text" id="urlInput" placeholder="https://ouo.io/xxxx atau https://androidadult.com/..." autocomplete="off">
+        </div>
+        <button class="btn" id="submitBtn">
+            <i class="fa-solid fa-bolt"></i> Proses
+        </button>
+    </div>
+
+    <!-- Loading (hidden default) -->
+    <div id="loadingState" class="result-card hidden" style="text-align: center;">
+        <span class="spinner"></span>
+        <p style="margin-top: 12px; color: #aaa;">Memproses URL...</p>
+    </div>
+
+    <!-- Result Container -->
+    <div id="resultContainer" class="result-card hidden">
+        <div class="result-header">
+            <i class="fa-solid fa-circle-check" style="color: #10b981;"></i>
+            <span>Hasil Bypass</span>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-label">Original URL</div>
+            <div class="result-value" id="originalUrl">-</div>
         </div>
 
-        <div class="input-group">
-            <input id="url" type="text" placeholder="Masukkan URL (ouo.io / androidadult.com)" autocomplete="off">
-            <button id="submit_button">
-                <i class="fa-solid fa-arrow-right"></i>
-                <span>Proses</span>
-            </button>
-        </div>
-
-        <div id="result-container" style="display: none;">
-            <div id="detected-type" class="detected-badge"></div>
-            <div class="result-card">
-                <h3><i class="fa-solid fa-circle-check" style="color: #22c55e; margin-right: 8px;"></i>Hasil</h3>
-                <ul class="result-list" id="result-list">
-                    <!-- Dynamic content -->
-                </ul>
-            </div>
-        </div>
-
-        <div id="error-container" style="display: none;">
-            <div class="error-card">
-                <h3><i class="fa-solid fa-circle-exclamation" style="color: #f43f5e; margin-right: 8px;"></i>Error</h3>
-                <p class="error-text" id="error-text"></p>
-            </div>
+        <div class="result-item">
+            <div class="result-label">Bypassed Result</div>
+            <div class="result-value" id="bypassedResult">-</div>
         </div>
     </div>
 
-    <script>
-        const submitBtn = document.getElementById("submit_button");
-        const urlInput = document.getElementById("url");
-        const resultContainer = document.getElementById("result-container");
-        const errorContainer = document.getElementById("error-container");
-        const detectedTypeEl = document.getElementById("detected-type");
-        const resultList = document.getElementById("result-list");
-        const errorText = document.getElementById("error-text");
+    <!-- Error Container -->
+    <div id="errorContainer" class="error-card hidden">
+        <div class="result-header">
+            <i class="fa-solid fa-triangle-exclamation" style="color: #ef4444;"></i>
+            <span>Error</span>
+        </div>
+        <div class="result-value" id="errorMessage" style="color: #fca5a5;">-</div>
+    </div>
+</div>
 
-        const API_BASE = "https://api.reyapi.my.id/api/tools";
+<script>
+    (function() {
+        const urlInput = document.getElementById('urlInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const loadingState = document.getElementById('loadingState');
+        const resultContainer = document.getElementById('resultContainer');
+        const errorContainer = document.getElementById('errorContainer');
+        const originalUrlEl = document.getElementById('originalUrl');
+        const bypassedResultEl = document.getElementById('bypassedResult');
+        const errorMessageEl = document.getElementById('errorMessage');
 
-        submitBtn.addEventListener("click", async function () {
-            const inputUrl = urlInput.value.trim();
-            
-            // Reset
-            resultContainer.style.display = "none";
-            errorContainer.style.display = "none";
+        const API_BASE = 'https://api.reyapi.my.id/api/tools';
+        const API_KEY = 'ReyTrial'; // Ganti dengan API key kamu
 
-            if (!inputUrl) {
-                showError("Masukkan URL terlebih dahulu!");
+        function hideAll() {
+            resultContainer.classList.add('hidden');
+            errorContainer.classList.add('hidden');
+            loadingState.classList.add('hidden');
+        }
+
+        function showLoading() {
+            hideAll();
+            loadingState.classList.remove('hidden');
+        }
+
+        function showResult(original, bypassedHtml) {
+            hideAll();
+            originalUrlEl.textContent = original;
+            bypassedResultEl.innerHTML = bypassedHtml;
+            resultContainer.classList.remove('hidden');
+        }
+
+        function showError(message) {
+            hideAll();
+            errorMessageEl.textContent = message;
+            errorContainer.classList.remove('hidden');
+        }
+
+        function detectEndpoint(url) {
+            if (url.includes('androidadult.com')) return 'androidadult';
+            if (url.includes('ouo.io') || url.includes('ouo.press')) return 'ouo-bypass';
+            return null;
+        }
+
+        async function processUrl() {
+            const url = urlInput.value.trim();
+            if (!url) {
+                showError('Masukkan URL terlebih dahulu!');
                 return;
             }
 
-            // Deteksi endpoint
-            let targetApi = null;
-            let detectedName = "";
-
-            if (inputUrl.includes("androidadult.com")) {
-                targetApi = "androidadult";
-                detectedName = "AndroidAdult Scraper";
-            } else if (inputUrl.includes("ouo.io") || inputUrl.includes("ouo.press")) {
-                targetApi = "ouo-bypass";
-                detectedName = "OUO Bypass";
-            } else {
-                showError("URL tidak dikenali! Gunakan URL dari ouo.io, ouo.press, atau androidadult.com");
+            const endpoint = detectEndpoint(url);
+            if (!endpoint) {
+                showError('URL tidak dikenali. Gunakan URL dari ouo.io, ouo.press, atau androidadult.com');
                 return;
             }
 
-            // Loading state
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i><span>Memproses...</span>`;
+            showLoading();
 
             try {
-                const response = await fetch(`${API_BASE}/${targetApi}`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ url: inputUrl })
+                const isAndroidAdult = endpoint === 'androidadult';
+                
+                // AndroidAdult tidak perlu API key, OUO perlu
+                const headers = {
+                    'Content-Type': 'application/json',
+                };
+                if (!isAndroidAdult) {
+                    headers['x-api-key'] = API_KEY;
+                }
+
+                const response = await fetch(`${API_BASE}/${endpoint}`, {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify({ url })
                 });
 
                 const data = await response.json();
 
                 if (!response.ok || !data.success) {
-                    throw new Error(data.error || "Terjadi kesalahan!");
+                    throw new Error(data.error || `HTTP ${response.status}`);
                 }
 
-                // Tampilkan hasil
-                detectedTypeEl.textContent = `📌 ${detectedName}`;
-                
-                let html = "";
-                
-                if (targetApi === "androidadult") {
-                    const apk = data.data?.apk;
-                    const mirror = data.data?.mirror;
+                // Parse response sesuai format baru
+                const resultData = data.data;
+                let bypassedHtml = '';
+
+                if (isAndroidAdult) {
+                    // Format: { apk: "...", mirror: "..." }
+                    const links = [];
+                    if (resultData.apk) links.push(`<span class="badge">APK</span> <a href="${resultData.apk}" target="_blank">${resultData.apk}</a>`);
+                    if (resultData.mirror) links.push(`<span class="badge">MIRROR</span> <a href="${resultData.mirror}" target="_blank">${resultData.mirror}</a>`);
                     
-                    html += `<li><strong>Original URL</strong><span>${escapeHtml(inputUrl)}</span></li>`;
-                    
-                    if (apk) {
-                        html += `<li><strong>APK File</strong><a href="${escapeHtml(apk)}" target="_blank">${escapeHtml(apk)}</a></li>`;
-                    }
-                    if (mirror) {
-                        html += `<li><strong>Mirror APK</strong><a href="${escapeHtml(mirror)}" target="_blank">${escapeHtml(mirror)}</a></li>`;
-                    }
-                    if (!apk && !mirror) {
-                        html += `<li><span style="color: #9898a6;">Tidak ada link ditemukan</span></li>`;
-                    }
+                    bypassedHtml = links.length > 0 
+                        ? `<div class="result-list">${links.map(l => `<li>${l}</li>`).join('')}</div>`
+                        : 'Tidak ada link ditemukan';
                 } else {
-                    const original = data.data?.original;
-                    const bypassed = data.data?.bypassed;
-                    
-                    html += `<li><strong>Original URL</strong><span>${escapeHtml(original || inputUrl)}</span></li>`;
-                    
+                    // Format OUO: { original: "...", bypassed: "..." }
+                    const bypassed = resultData.bypassed;
                     if (bypassed) {
-                        html += `<li><strong>Bypassed URL</strong><a href="${escapeHtml(bypassed)}" target="_blank">${escapeHtml(bypassed)}</a></li>`;
+                        bypassedHtml = `<a href="${bypassed}" target="_blank">${bypassed}</a>`;
                     } else {
-                        html += `<li><span style="color: #f43f5e;">Gagal bypass</span></li>`;
+                        bypassedHtml = '<span style="color: #f87171;">Gagal mendapatkan link bypass</span>';
                     }
                 }
 
-                resultList.innerHTML = html;
-                resultContainer.style.display = "block";
+                showResult(resultData.original || url, bypassedHtml);
 
             } catch (error) {
-                showError(error.message);
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = `<i class="fa-solid fa-arrow-right"></i><span>Proses</span>`;
+                console.error(error);
+                showError(error.message || 'Gagal memproses URL');
             }
-        });
-
-        function showError(message) {
-            errorText.textContent = message;
-            errorContainer.style.display = "block";
         }
 
-        function escapeHtml(text) {
-            if (!text) return "";
-            const div = document.createElement("div");
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        // Enter key submit
-        urlInput.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") {
-                submitBtn.click();
-            }
+        submitBtn.addEventListener('click', processUrl);
+        urlInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') processUrl();
         });
-    </script>
+
+        // Fokus ke input saat halaman load
+        urlInput.focus();
+    })();
+</script>
 
 </body>
-
 </html>
