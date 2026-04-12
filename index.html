@@ -4,205 +4,379 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Web Eja</title>
+    <title>Rey APIs - OUO Bypass & AndroidAdult Scraper</title>
 
     <!-- Google Fonts & Font Awesome -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #1e3c72, #2a5298);
-            color: white;
-            text-align: center;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        .container-header {
-            margin-top: 20px;
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0d0d14 0%, #16161f 100%);
+            color: #f5f5f7;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: #1a1a24;
+            border: 1px solid #2a2a3a;
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
         }
 
         .title {
-            font-size: 2em;
-            font-weight: bold;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #a855f7 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
         }
 
         .subtitle {
-            font-size: 1.2em;
-            opacity: 0.8;
+            font-size: 1rem;
+            color: #9898a6;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
-        .container-input {
-            margin-top: 20px;
+        .badge {
+            background: #a855f7;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        input {
-            width: 80%;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
+        .input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 14px 18px;
+            background: #0d0d14;
+            border: 1px solid #2a2a3a;
+            border-radius: 16px;
+            color: #f5f5f7;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
             outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
 
-        button {
-            background: #ff9800;
+        .input-group input:focus {
+            border-color: #a855f7;
+            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
+        }
+
+        .input-group input::placeholder {
+            color: #5a5a6e;
+        }
+
+        .input-group button {
+            background: #a855f7;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 0 24px;
+            border-radius: 16px;
             cursor: pointer;
-            font-size: 1.2em;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        button:hover {
-            background: #e68900;
+        .input-group button:hover {
+            background: #9333ea;
+            transform: scale(1.02);
         }
 
-        .result-container {
+        .input-group button:active {
+            transform: scale(0.98);
+        }
+
+        .result-card, .error-card {
+            background: #0d0d14;
+            border: 1px solid #2a2a3a;
+            border-radius: 16px;
+            padding: 20px;
             margin-top: 20px;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .result-card h3, .error-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: #9898a6;
+        }
+
+        .error-card h3 {
+            color: #f43f5e;
         }
 
         .result-list {
-            text-align: left;
-            display: inline-block;
+            list-style: none;
         }
 
-        .error-container {
-            margin-top: 20px;
-            padding: 10px;
-            background: rgba(255, 0, 0, 0.2);
-            border-radius: 5px;
-            color: #ff4c4c;
-            display: none;
+        .result-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #1e1e2a;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
         }
 
-        a {
-            color: #ffeb3b;
+        .result-list li:last-child {
+            border-bottom: none;
+        }
+
+        .result-list strong {
+            min-width: 100px;
+            font-size: 0.85rem;
+            color: #9898a6;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .result-list span, .result-list a {
+            color: #a855f7;
+            word-break: break-all;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+        }
+
+        .result-list a {
             text-decoration: none;
+            border-bottom: 1px dashed #a855f7;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .result-list a:hover {
+            border-bottom: 1px solid #a855f7;
+        }
+
+        .error-text {
+            color: #f43f5e;
+            font-size: 0.9rem;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .detected-badge {
+            display: inline-block;
+            background: #1e1e2a;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #a855f7;
+            margin-bottom: 12px;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="full-container">
-        <div class="container-header">
-            <span class="title">Test Web Eja</span>
-            <span class="subtitle">Cihuy</span>
+    <div class="card">
+        <div class="header">
+            <h1 class="title">Rey APIs</h1>
+            <div class="subtitle">
+                <span>OUO Bypass & AndroidAdult Scraper</span>
+                <span class="badge">v2.0</span>
+            </div>
         </div>
 
-        <div class="container-input">
-            <input id="url" type="text" placeholder="Masukkan URL" autocomplete="off">
-            <button id="submit_button"><i class="fa-solid fa-arrow-right"></i></button>
+        <div class="input-group">
+            <input id="url" type="text" placeholder="Masukkan URL (ouo.io / androidadult.com)" autocomplete="off">
+            <button id="submit_button">
+                <i class="fa-solid fa-arrow-right"></i>
+                <span>Proses</span>
+            </button>
         </div>
 
-        <div class="result-container" id="result">
-            <h3>Hasil:</h3>
-            <ul class="result-list">
-                <li><strong>Original Link:</strong> <span id="result-original"></span></li>
-                <li>
-                    <strong>Bypassed Link:</strong> 
-                    <span id="result-bypassed"></span>
-                </li>
-            </ul>
+        <div id="result-container" style="display: none;">
+            <div id="detected-type" class="detected-badge"></div>
+            <div class="result-card">
+                <h3><i class="fa-solid fa-circle-check" style="color: #22c55e; margin-right: 8px;"></i>Hasil</h3>
+                <ul class="result-list" id="result-list">
+                    <!-- Dynamic content -->
+                </ul>
+            </div>
         </div>
 
-        <div class="error-container" id="error">
-            <h3>Error:</h3>
-            <p id="error-text"></p>
+        <div id="error-container" style="display: none;">
+            <div class="error-card">
+                <h3><i class="fa-solid fa-circle-exclamation" style="color: #f43f5e; margin-right: 8px;"></i>Error</h3>
+                <p class="error-text" id="error-text"></p>
+            </div>
         </div>
     </div>
 
     <script>
-        document.getElementById("submit_button").addEventListener("click", function () {
-            let inputUrl = document.getElementById("url").value.trim();
-            let resultContainer = document.getElementById("result");
-            let errorContainer = document.getElementById("error");
+        const submitBtn = document.getElementById("submit_button");
+        const urlInput = document.getElementById("url");
+        const resultContainer = document.getElementById("result-container");
+        const errorContainer = document.getElementById("error-container");
+        const detectedTypeEl = document.getElementById("detected-type");
+        const resultList = document.getElementById("result-list");
+        const errorText = document.getElementById("error-text");
 
-            // Sembunyikan hasil & error sebelum request
+        const API_BASE = "https://api.reyapi.my.id/api/tools";
+
+        submitBtn.addEventListener("click", async function () {
+            const inputUrl = urlInput.value.trim();
+            
+            // Reset
             resultContainer.style.display = "none";
             errorContainer.style.display = "none";
 
             if (!inputUrl) {
-                alert("Masukkan URL terlebih dahulu!");
+                showError("Masukkan URL terlebih dahulu!");
                 return;
             }
 
-            const api1Domains = ["androidadult.com"];
-            const api2Domains = ["ouo.io", "ouo.press"];
-        
+            // Deteksi endpoint
             let targetApi = null;
-        
-            if (api1Domains.some(domain => inputUrl.includes(domain))) {
+            let detectedName = "";
+
+            if (inputUrl.includes("androidadult.com")) {
                 targetApi = "androidadult";
-            } else if (api2Domains.some(domain => inputUrl.includes(domain))) {
-                targetApi = "bypass";
+                detectedName = "AndroidAdult Scraper";
+            } else if (inputUrl.includes("ouo.io") || inputUrl.includes("ouo.press")) {
+                targetApi = "ouo-bypass";
+                detectedName = "OUO Bypass";
             } else {
-                alert("URL tidak dikenali!");
+                showError("URL tidak dikenali! Gunakan URL dari ouo.io, ouo.press, atau androidadult.com");
                 return;
             }
 
-            fetch("https://test-flask-api-production.up.railway.app/" + targetApi, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ url: inputUrl })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    return response.json().then(err => { throw new Error(err.message || "Terjadi kesalahan!"); });
+            // Loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i><span>Memproses...</span>`;
+
+            try {
+                const response = await fetch(`${API_BASE}/${targetApi}`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ url: inputUrl })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok || !data.success) {
+                    throw new Error(data.error || "Terjadi kesalahan!");
                 }
-                return response.json();
-            })
-            .then(data => {
-                document.getElementById("result-original").innerText = data.original_link || "Tidak ada data";
 
-                let bypassedLinks = [];
-                let bypassedHtml = "";
-
+                // Tampilkan hasil
+                detectedTypeEl.textContent = `📌 ${detectedName}`;
+                
+                let html = "";
+                
                 if (targetApi === "androidadult") {
-                    if (data["APK File"]) {
-                        bypassedLinks.push({ text: "APK File", url: data["APK File"] });
+                    const apk = data.data?.apk;
+                    const mirror = data.data?.mirror;
+                    
+                    html += `<li><strong>Original URL</strong><span>${escapeHtml(inputUrl)}</span></li>`;
+                    
+                    if (apk) {
+                        html += `<li><strong>APK File</strong><a href="${escapeHtml(apk)}" target="_blank">${escapeHtml(apk)}</a></li>`;
                     }
-                    if (data["Mirror APK"]) {
-                        bypassedLinks.push({ text: "Mirror APK", url: data["Mirror APK"] });
+                    if (mirror) {
+                        html += `<li><strong>Mirror APK</strong><a href="${escapeHtml(mirror)}" target="_blank">${escapeHtml(mirror)}</a></li>`;
+                    }
+                    if (!apk && !mirror) {
+                        html += `<li><span style="color: #9898a6;">Tidak ada link ditemukan</span></li>`;
                     }
                 } else {
-                    if (data.bypassed_link) {
-                        bypassedLinks.push({ text: "Bypassed Link", url: data.bypassed_link });
+                    const original = data.data?.original;
+                    const bypassed = data.data?.bypassed;
+                    
+                    html += `<li><strong>Original URL</strong><span>${escapeHtml(original || inputUrl)}</span></li>`;
+                    
+                    if (bypassed) {
+                        html += `<li><strong>Bypassed URL</strong><a href="${escapeHtml(bypassed)}" target="_blank">${escapeHtml(bypassed)}</a></li>`;
+                    } else {
+                        html += `<li><span style="color: #f43f5e;">Gagal bypass</span></li>`;
                     }
                 }
 
-                if (bypassedLinks.length > 0) {
-                    bypassedHtml = "<ul>";
-                    bypassedLinks.forEach(link => {
-                        bypassedHtml += `<li><strong>${link.text}:</strong> 
-                            <a href="${link.url}" target="_blank">${link.url}</a></li>`;
-                    });
-                    bypassedHtml += "</ul>";
-                } else {
-                    bypassedHtml = "Tidak ada link yang ditemukan.";
-                }
-
-                document.getElementById("result-bypassed").innerHTML = bypassedHtml;
+                resultList.innerHTML = html;
                 resultContainer.style.display = "block";
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                document.getElementById("error-text").innerText = error.message || "Terjadi kesalahan!";
-                errorContainer.style.display = "block";
-            });
+
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fa-solid fa-arrow-right"></i><span>Proses</span>`;
+            }
+        });
+
+        function showError(message) {
+            errorText.textContent = message;
+            errorContainer.style.display = "block";
+        }
+
+        function escapeHtml(text) {
+            if (!text) return "";
+            const div = document.createElement("div");
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Enter key submit
+        urlInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                submitBtn.click();
+            }
         });
     </script>
 
