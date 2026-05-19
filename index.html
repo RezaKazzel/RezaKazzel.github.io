@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey Tools · OUO Bypass & AndroidAdult</title>
+    <title>Rey Tools · OUO Bypass</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -256,26 +256,24 @@
 <div class="glass-card">
     <div class="header">
         <div class="title">Rey Tools</div>
-        <div class="subtitle">OUO Bypass · AndroidAdult</div>
+        <div class="subtitle">OUO Bypass</div>
     </div>
 
     <div class="input-group">
         <div class="input-wrapper">
             <i class="fa-solid fa-link"></i>
-            <input type="text" id="urlInput" placeholder="https://ouo.io/xxxx atau https://androidadult.com/..." autocomplete="off">
+            <input type="text" id="urlInput" placeholder="https://ouo.io/xxxx" autocomplete="off">
         </div>
         <button class="btn" id="submitBtn">
             <i class="fa-solid fa-bolt"></i> Proses
         </button>
     </div>
 
-    <!-- Loading (hidden default) -->
     <div id="loadingState" class="result-card hidden" style="text-align: center;">
         <span class="spinner"></span>
         <p style="margin-top: 12px; color: #aaa;">Memproses URL...</p>
     </div>
 
-    <!-- Result Container -->
     <div id="resultContainer" class="result-card hidden">
         <div class="result-header">
             <i class="fa-solid fa-circle-check" style="color: #10b981;"></i>
@@ -293,7 +291,6 @@
         </div>
     </div>
 
-    <!-- Error Container -->
     <div id="errorContainer" class="error-card hidden">
         <div class="result-header">
             <i class="fa-solid fa-triangle-exclamation" style="color: #ef4444;"></i>
@@ -315,7 +312,7 @@
         const errorMessageEl = document.getElementById('errorMessage');
 
         const API_BASE = 'https://api.reyapi.my.id/api/tools';
-        const API_KEY = 'ReyTrial'; // Ganti dengan API key kamu
+        const API_KEY = 'ReyTrial';
 
         function hideAll() {
             resultContainer.classList.add('hidden');
@@ -365,32 +362,17 @@
             try {
                 const isAndroidAdult = endpoint === 'androidadult';
                 
-                // AndroidAdult tidak perlu API key, OUO perlu
-                const headers = {
-                    'Content-Type': 'application/json',
-                };
-                if (!isAndroidAdult) {
-                    headers['x-api-key'] = API_KEY;
-                }
-
-                const response = await fetch(`${API_BASE}/${endpoint}`, {
-                    method: 'POST',
-                    headers,
-                    body: JSON.stringify({ url })
-                });
-
-                const data = await response.json();
-
-                if (!response.ok || !data.success) {
-                    throw new Error(data.error || `HTTP ${response.status}`);
-                }
-
-                // Parse response sesuai format baru
-                const resultData = data.data;
-                let bypassedHtml = '';
-
                 if (isAndroidAdult) {
-                    // Format: { apk: "...", mirror: "..." }
+                    const response = await fetch(`${API_BASE}/androidadult?url=${encodeURIComponent(url)}`);
+                    const data = await response.json();
+
+                    if (!response.ok || !data.success) {
+                        throw new Error(data.error || `HTTP ${response.status}`);
+                    }
+
+                    const resultData = data.data;
+                    let bypassedHtml = '';
+                    
                     const links = [];
                     if (resultData.apk) links.push(`<span class="badge">APK</span> <a href="${resultData.apk}" target="_blank">${resultData.apk}</a>`);
                     if (resultData.mirror) links.push(`<span class="badge">MIRROR</span> <a href="${resultData.mirror}" target="_blank">${resultData.mirror}</a>`);
@@ -398,17 +380,33 @@
                     bypassedHtml = links.length > 0 
                         ? `<div class="result-list">${links.map(l => `<li>${l}</li>`).join('')}</div>`
                         : 'Tidak ada link ditemukan';
+                    
+                    showResult(url, bypassedHtml);
+                    
                 } else {
-                    // Format OUO: { original: "...", bypassed: "..." }
-                    const bypassed = resultData.bypassed;
-                    if (bypassed) {
-                        bypassedHtml = `<a href="${bypassed}" target="_blank">${bypassed}</a>`;
-                    } else {
-                        bypassedHtml = '<span style="color: #f87171;">Gagal mendapatkan link bypass</span>';
-                    }
-                }
+                    const response = await fetch(`${API_BASE}/ouo-bypass`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'x-api-key': API_KEY
+                        },
+                        body: JSON.stringify({ url })
+                    });
 
-                showResult(resultData.original || url, bypassedHtml);
+                    const data = await response.json();
+
+                    if (!response.ok || !data.success) {
+                        throw new Error(data.error || `HTTP ${response.status}`);
+                    }
+
+                    const resultData = data.data;
+                    const bypassed = resultData.bypassed;
+                    const bypassedHtml = bypassed 
+                        ? `<a href="${bypassed}" target="_blank">${bypassed}</a>`
+                        : '<span style="color: #f87171;">Gagal mendapatkan link bypass</span>';
+                    
+                    showResult(resultData.original || url, bypassedHtml);
+                }
 
             } catch (error) {
                 console.error(error);
@@ -421,7 +419,6 @@
             if (e.key === 'Enter') processUrl();
         });
 
-        // Fokus ke input saat halaman load
         urlInput.focus();
     })();
 </script>
